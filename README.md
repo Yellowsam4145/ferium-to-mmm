@@ -1,2 +1,3 @@
-# ferium-to-mmm
-Convert ferium config files to mmm modlist files!
+# Ferium to mmm
+Convert ferium config files to Minecraft Mod Manager modlist files!
+
