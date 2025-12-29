@@ -2,10 +2,7 @@
 
 # Imports
 import json
-from shlex import join
 import sys
-
-from regex import P
 
 print("Welcome! Please wait...") # Quick loading text
 
