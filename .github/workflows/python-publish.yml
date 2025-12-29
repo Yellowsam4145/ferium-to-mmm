@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
-          python-version: '3.8'  # Specify your desired Python version.
+          python-version: '3.14'  # Specify your desired Python version.
 
       - name: Install dependencies
         run: |
@@ -27,15 +27,15 @@ jobs:
       - name: Build executable
         run: |
           if [[ ${{ matrix.os }} == 'ubuntu-latest' ]]; then
-            pyinstaller --onefile your_script.py --distpath=./linux_dist
+            pyinstaller --onefile converter.py --distpath=./linux_dist
           else
-            pyinstaller --onefile your_script.py --distpath=./windows_dist
+            pyinstaller --onefile converter.py --distpath=./windows_dist
           fi
 
       - name: Upload Executable
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
-          name: Executables
+          name: ferium-to-mmm
           path: |
             linux_dist/*
             windows_dist/*
