@@ -26,11 +26,12 @@ jobs:
 
       - name: Build executable
         run: |
-          if ([[ ${{ matrix.os }} == 'ubuntu-latest' ]]); then
+          if [ ${{ matrix.os }} = 'ubuntu-latest' ]; then
             pyinstaller --onefile converter.py --distpath=./linux_dist
           else
             pyinstaller --onefile converter.py --distpath=./windows_dist
           fi
+        shell: bash  # Ensure we're using bash on Linux
 
       - name: Upload Executable
         uses: actions/upload-artifact@v4
