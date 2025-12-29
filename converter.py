@@ -2,7 +2,10 @@
 
 # Imports
 import json
+from shlex import join
 import sys
+
+from regex import P
 
 print("Welcome! Please wait...") # Quick loading text
 
@@ -45,13 +48,13 @@ else:
     for value in data.values(): # For each profile
         for properties in value: # For each property of the profile
 
-            name = properties.get("name", "Profile")
+            profilename = properties.get("name", "Profile")
             outputloc = properties.get("output_dir", "/")
             ver = properties.get("game_version", "1.21.1")
             loader = properties.get("mod_loader", "Fabric")
             mods = properties.get("mods", [])
 
-            print("Profile:", name)
+            print("Profile:", profilename)
             print("Output:", outputloc)
             print("Version:", ver)
             print("Loader:", loader)
@@ -72,8 +75,28 @@ else:
                     print("Currently, only modrinth mods are supported. Please wait for forge support!")
                     print("Note that in the future, github projects will be supported by mmm.") # I plan to add a github side modlist generated
                 
-                mod = {"type": loader, "id": id, "name": name} # Fill in the required details; Note that name isn't required but is still added
-                newmods.append(mod)
+                mod = { # Fill in the required details in dict; Note that name isn't required but is still added
+                    "type": loader,
+                    "id": id,
+                    "name": name
+                    } 
+                newmods.append(mod) # Add to all mods
+
+            print("Generating file...")
+            allowed = ["beta", "release"]
+            filedata = {
+                "loader": loader, # Loader
+                "gameVersion": ver, # MC Version
+                "defaultAllowedReleaseTypes": allowed, # Allowed releases
+                "modsFolder": outputloc, # Mod output folder
+                "mods": newmods # Mods
+            }
+            filename = profilename.replace(" ", "") # Remove whitespaces
+            filename = filename + ".json" # Add .json
+            with open(filename, 'w') as file:
+                json.dump(filedata, file, indent=2) # Save to file
+            print(profilename, "saved as", filename)
+
 
                 
 
