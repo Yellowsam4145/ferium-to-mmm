@@ -66,10 +66,14 @@ else:
                 if "ModrinthProject" in curmod: # Check if modrinth
                     source = "modrinth"
                     id = curmod.get("ModrinthProject", "")
-                else: # Forge support: not now ):
-                    source = "other"
-                    id = ""
-                    print("Currently, only modrinth mods are supported. Please wait for forge support!")
+                else:
+                    if "CurseForgeProject" in curmod:
+                        source = "curseforge"
+                        id = curmod.get("CurseForgeProject", "") 
+                    else:
+                        source = "other"
+                        id = ""
+                    print("This mod wasn't found in modrinth or curseforge.")
                     print("Note that in the future, github projects will be supported by mmm.") # I plan to add a github side modlist generated
                 
                 mod = { # Fill in the required details in dict; Note that name isn't required but is still added
