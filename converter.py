@@ -78,6 +78,8 @@ else:
                     "name": name
                     } 
                 newmods.append(mod) # Add to all mods
+            
+            loader = loader.lower()
 
             print("Generating file...")
             allowed = ["beta", "release"]
