@@ -73,7 +73,7 @@ else:
                     else:
                         source = "other"
                         id = ""
-                    print("This mod wasn't found in modrinth or curseforge.")
+                        print("This mod wasn't found in modrinth or curseforge.")
                     print("Note that in the future, github projects will be supported by mmm.") # I plan to add a github side modlist generated
                 
                 mod = { # Fill in the required details in dict; Note that name isn't required but is still added
