@@ -86,7 +86,7 @@ else:
             loader = loader.lower()
 
             print("Generating file...")
-            allowed = ["beta", "release"]
+            allowed = ["beta", "release", "alpha"]
             filedata = {
                 "loader": loader, # Loader
                 "gameVersion": ver, # MC Version
